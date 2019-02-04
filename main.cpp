@@ -10,16 +10,17 @@ int main()
     cin >> vardas;
     cout << "Iveskite remelio dydi" << endl;
     cin >> dydis;
-    cout << "***************************" << endl;
+    printf("***************************\n");
     for(int i=0; i<dydis; i++)
     {
-        cout << "*                         *" << endl;
+        //cout << "*                         *" << endl;
+        printf("%*c%*c\n", -10, '*', 17, '*');
     }
-    printf("%*c%s%s%*c\n", -5, '*', "Sveikas, ", vardas, 8, '*');
+    printf("%*c%s%s%*c\n", -5, '*', "Sveikas, ", vardas, 4, '*');
     for(int i=0; i<dydis; i++)
     {
-        cout << "*                         *" << endl;
+        printf("%*c%*c\n", -10, '*', 17, '*');
     }
-    cout << "***************************" << endl;
+    printf("***************************\n");
     return 0;
 }
