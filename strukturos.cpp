@@ -30,7 +30,13 @@ struct node{
     node *next;
 };
 
-void krepsininkai(node *&root, int n) {
+struct krepsininkas{
+    string pavarde;
+    double ugis;
+    double rez;
+};
+
+void ivedimas(node *&root, int n) {
   if (n > 0) {
     root = new node;
     cout << "Iveskite " << 1 << " krepsininko pavarde" << endl;
@@ -64,14 +70,39 @@ void print(node *root) {
   cout << endl;
 }
 
+void tvarkymas(krepsininkas *K) {
+
+    for(int i=0; i<4; i++)
+    {
+        for(int j=i+1; j<5; j++)
+        {
+            if(K[j].rez>K[i].rez) {
+                krepsininkas temp=K[i];
+                K[i]=K[j];
+                K[j]=temp;
+            }
+        }
+    }
+}
+
+void isvedimas(krepsininkas *K){
+    for(int i=0; i<5; i++){
+        cout << K->pavarde << " " << K->ugis << " " << K->rez << endl;
+        K++;
+    }
+}
+
+
 int main()
 {
+    //1 ir 2 uzd
     data A;
     A.y = 1999;
     A.m = 11;
     A.d = 6;
     A.date();
 
+    //3 uzd
     knyga B;
     B.graz.y=2015;
     B.graz.m=12;
@@ -80,6 +111,7 @@ int main()
     getline(cin, B.pav);
     B.spausdinimas();
 
+    //4 uzd
     taskas t1, t2;
     cout << "Iveskite staciakampio kairio virsutinio tasko koordinates" << endl;
     cin >> t1.x >> t1.y;
@@ -88,11 +120,32 @@ int main()
     int S=fabs((t1.x-t2.x)*(t1.y-t2.y));
     cout << "Staciakampio plotas: " << S << endl;
 
+    //5 uzd
     node *root = NULL;
     int n;
     cout << "Krepsininku skaicius: " << endl;
     cin >> n;
-    krepsininkai(root, n);
+    ivedimas(root, n);
     print(root);
+
+    //6 uzd
+    krepsininkas K[20];
+    K[0].pavarde = "Paulauskas";
+    K[0].ugis = 198;
+    K[0].rez = 15;
+    K[1].pavarde = "Lukauskas";
+    K[1].ugis = 205;
+    K[1].rez = 10;
+    K[2].pavarde = "Jonauskas";
+    K[2].ugis = 189;
+    K[2].rez = 23;
+    K[3].pavarde = "Girauskas";
+    K[3].ugis = 197;
+    K[3].rez = 13;
+    K[4].pavarde = "Nerkauskas";
+    K[4].ugis = 199;
+    K[4].rez = 17;
+    tvarkymas(&*K);
+    isvedimas(&*K);
     return 0;
 }
